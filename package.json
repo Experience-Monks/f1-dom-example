@@ -1,0 +1,36 @@
+{
+  "name": "f1-dom-example",
+  "version": "1.0.0",
+  "description": "This an example of creating ui animations using the dom and the f1 module",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Mikko Haapoja",
+    "email": "me@mikkoh.com",
+    "url": "https://github.com/mikkoh"
+  },
+  "dependencies": {
+    "dom-event": "0.0.4",
+    "dom-style": "0.0.3",
+    "eases": "^1.0.6",
+    "f1": "^3.0.1",
+    "f1-dom": "^1.0.0"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.2"
+  },
+  "scripts": {
+    "test": "./node_modules/beefy/bin/beefy index.js --live --open"
+  },
+  "keywords": [
+    "f1,dom,example"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikkoh/f1-dom-example.git"
+  },
+  "homepage": "https://github.com/mikkoh/f1-dom-example",
+  "bugs": {
+    "url": "https://github.com/mikkoh/f1-dom-example/issues"
+  }
+}
