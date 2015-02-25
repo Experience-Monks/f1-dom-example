@@ -35,15 +35,17 @@ document.body.appendChild( el );
 el.appendChild( bg );
 el.appendChild( fg );
 
-var ui = f1( /* { onState: function() { console.log( arguments ) } } */ );
+
+
+var ui = f1();
 
 ui
 .toAnimate( {
   bg: bg,
   fg: fg
 })
-.states( require( './lib/states' ) )
-.transitions( require( './lib/transitions' ) )
+.states( require( './states' ) )
+.transitions( require( './transitions' ) )
 .teach( require( 'f1-dom' ) )
 .init( 'out' )
 .go( 'idle' ); 
