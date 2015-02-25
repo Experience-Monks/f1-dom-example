@@ -1,0 +1,31 @@
+<div 
+style="position: relative; left: 100px; top: 100px; cursor: pointer;" 
+v-on="mousedown: onMouseDown, 
+      mouseup: onMouseUp,
+      mouseenter: onMouseOver,
+      mouseleave: onMouseOut">
+
+  <div 
+  id="bg"
+  v-style="
+            position: 'absolute',
+            left: bg.x + 'px',
+            top: bg.y + 'px',
+            width: '200px',
+            height: '40px',
+            background-color: 'rgba(' + Math.round( bg.r ) + ', 100, 100, ' + Math.round( bg.alpha ) + ')'
+          "
+  >
+  </div>
+
+  <div 
+  id="fg" 
+  v-text="fg.copy"
+  v-style=" 
+            position: 'absolute', 
+            left: fg.x + 'px',
+            top: fg.y + 'px',
+            opacity: fg.alpha
+          ">
+  </div>
+</div>
