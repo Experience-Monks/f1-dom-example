@@ -64,5 +64,7 @@ function updateDownState( ev ) {
 
 	block.rotation[ 0 ] = y;
 	block.rotation[ 1 ] = x;
+	
+	ui.update();
 }
 
