@@ -40,13 +40,13 @@ el.appendChild( fg );
 var ui = f1();
 
 ui
-.toAnimate( {
+.targets( {
   bg: bg,
   fg: fg
 })
 .states( require( './states' ) )
 .transitions( require( './transitions' ) )
-.teach( require( 'f1-dom' ) )
+.parsers( require( 'f1-dom' ) )
 .init( 'out' )
 .go( 'idle' ); 
 

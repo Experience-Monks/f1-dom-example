@@ -55,10 +55,10 @@ uiVue = new vue( {
 ui = new f1();
 
 ui
-.toAnimate( model )
+.targets( model )
 .states( require( './states' ) )
 .transitions( require( './transitions' ) )
-.teach( require( 'f1-model' ) )
+.parsers( require( 'f1-model' ) )
 .init( 'out' );
 
 ui.go( 'idle' );

@@ -1,188 +1,62 @@
-var f1 = require('f1');
-var select = require('dom-select');
-var eases = require('eases');
+/***** THIS IS NOT REALLY AN EXAMPLE BUT MORE SO TESTING A BUG WHICH CAME UP DURING PRODUCTION *****/
 
-function button( containerSelector ) {
+var f1 = require( 'f1' );
+var f1Dom = require('f1-dom');
+var select = require( 'dom-select' );
 
-	var isSelected = false;
-	var container = select( containerSelector );
+var bar = document.createElement('div');
 
-	var ui = f1()
-	.toAnimate( {
+bar.style.position = 'absolute';
+bar.style.top = '200px';
+bar.style.width = '200px';
+bar.style.height = '50px';
+bar.style.background = '#F0F';
 
-		base: select( '#base', container ),
-		roll: select( '#roll', container ),
-		selected: select( '#selected', container ),
-		selectedPre: select( '#selectedPre', container )
-	})
-	.states( {
+document.body.appendChild(bar);
 
-		out: {
 
-			base: {
-
-				scale: [ 0, 0 ]
-			},
-
-			roll: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selected: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selectedPre: {
-
-				scale: [ 0, 0 ]	
-			}
-		},
-
-		idle: {
-
-			base: {
-
-				scale: [ 1, 1 ]
-			},
-
-			roll: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selected: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selectedPre: {
-
-				scale: [ 0, 0 ]	
-			}
-		},
-
-		rollover: {
-
-			base: {
-
-				scale: [ 1, 1 ]
-			},
-
-			roll: {
-
-				scale: [ 1, 1 ]
-			},
-
-			selected: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selectedPre: {
-
-				scale: [ 0.7, 0.7 ]	
-			}
-		},
-
-		selected: {
-
-			base: {
-
-				scale: [ 1, 1 ]
-			},
-
-			roll: {
-
-				scale: [ 1, 1 ]
-			},
-
-			selected: {
-
-				scale: [ 1, 1 ]
-			},
-
-			selectedPre: {
-
-				scale: [ 0.1, 0.1 ]	
-			}
-		},
-
-		preUnselect: {
-
-			base: {
-
-				scale: [ 1, 1 ]
-			},
-
-			roll: {
-
-				scale: [ 1, 1 ]
-			},
-
-			selected: {
-
-				scale: [ 0, 0 ]
-			},
-
-			selectedPre: {
-
-				scale: [ 0.25, 0.25 ]	
-			}
-		},	
-	})
-	.transitions( [
-
-		'out', 'idle', { duration: 0.3, ease: eases.backOut },
-		
-		'idle', 'rollover', { 
-			duration: 0.5, ease: eases.expoOut,
-
-			roll: { duration: 0.3 },
-			selectedPre: { duration: 0.25, delay: 0.2 }
-		},
-		'rollover', 'idle', { duration: 0.25, ease: eases.expoOut },
-
-		'rollover', 'selected', { duration: 0.25, ease: eases.expoOut },
-		'selected', 'preUnselect', { duration: 1, ease: eases.expoOut },
-		'preUnselect', 'rollover', { duration: 0.25, ease: eases.expoOut }
-	])
-	.teach( require('f1-dom') )
-	.init( 'out' );
-
-	ui.go( 'idle' );
-
-	container.addEventListener( 'mouseenter', function() {
-
-		if( !isSelected ) {
-
-			ui.go( 'rollover' );
+var ui = f1()
+.targets( {
+	bar: bar
+})
+.states( {
+	'1': {
+		bar: {
+			position: [0, 0, 0]
 		}
-	});
+	},
 
-	container.addEventListener( 'mouseleave', function() {
-
-		if( !isSelected ) {
-
-			ui.go( 'idle' );	
+	'2': {
+		bar: {
+			position: [window.innerWidth * 0.5 - 100, 0, 0]
 		}
-	});
+	},
 
-	container.addEventListener( 'mousedown', function() {
-
-		isSelected = !isSelected;
-
-		if( isSelected ) {
-
-			ui.go( 'selected' );	
-		} else {
-
-			ui.go( 'rollover' );
+	'3': {
+		bar: {
+			position: [window.innerWidth - 200, 0, 0]
 		}
-	});
-}
+	}
+})
+.transitions([
+	{ from: '1', to: '2' },
+	{ from: '1', to: '3' },
 
-button( '#container1' );
-button( '#container2' );
-button( '#container3' );
+	{ from: '2', to: '1' },
+	{ from: '2', to: '3' },
+
+	{ from: '3', to: '1' },
+	{ from: '3', to: '2' }
+])
+.parsers(f1Dom)
+.init('1');
+
+window.addEventListener('keyup', function(ev) {
+
+	var state = String.fromCharCode(ev.which);
+
+	if(state === '1' || state === '2' || state === '3') {
+
+		ui.go(state);
+	}
+});
