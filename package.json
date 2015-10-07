@@ -10,12 +10,12 @@
     "url": "https://github.com/mikkoh"
   },
   "dependencies": {
-    "budo": "^4.1.0",
+    "budo": "^5.1.1",
     "dom-event": "0.0.4",
     "dom-select": "0.0.0",
     "dom-style": "0.0.3",
     "eases": "^1.0.6",
-    "f1": "^5.1.0",
+    "f1": "^5.2.2",
     "f1-dom": "^1.1.0",
     "f1-model": "^1.0.0",
     "opnr": "^1.0.4",
@@ -25,10 +25,11 @@
     "brfs": "^1.4.0"
   },
   "scripts": {
-    "dom1": "budo example-dom-1 --live | opnr",
-    "dom2": "budo example-dom-2 --live | opnr",
-    "dom3": "budo example-dom-3 --live | opnr",
-    "vue1": "budo example-vue-1 --live -- -t brfs | opnr"
+    "dom1": "budo example-dom-1 --live --open",
+    "dom2": "budo example-dom-2 --live --open",
+    "dom3": "budo example-dom-3 --live --open",
+    "dom4": "budo example-dom-4 --live --open",
+    "vue1": "budo example-vue-1 --live --open -- -t brfs"
   },
   "keywords": [
     "f1,dom,example"

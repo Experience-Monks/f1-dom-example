@@ -3,8 +3,8 @@ module.exports = {
   out: {
 
     icon: {
-      position: [ 0, 0, 0 ],
-      scale: [ 0, 0 ]
+      position: [ 0, 0, 1000 ],
+      scale: [ 1, 1 ]
     },
 
     line: {
