@@ -47,7 +47,11 @@ el.appendChild(text);
 
 
 
-var ui = f1();
+var ui = f1({
+  onState: function() {
+    console.log('onState', arguments);
+  }
+});
 
 ui
 .targets( {
